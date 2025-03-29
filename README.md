@@ -21,36 +21,36 @@ Pygame Interface: Interactive GUI using Pygame for playing against AI or watchin
 Prerequisites
 
 Ensure you have Python installed (Python 3.7+ recommended). Then, install the required dependencies:
-'''
+```
 pip install numpy pygame numba matplotlib
-'''
+```
 
 ## Usage
 
 Running the Game
 
 To start the game with AI players using different heuristics:
-'''
+```
 python main.py
-'''
+```
 You can modify main.py to test different AI strategies.
 
 ### Customizing AI Players
 
 You can initialize the AI with a specific heuristic function:
-'''
+```
 player1 = MinMaxPlayer(1, mobility_heuristic, depth=3)
 player2 = MinMaxPlayer(-1, stability_heuristic, depth=3)
 game = Othello(player1, player2)
 game.play()
-'''
+```
 
 ### Running Heuristic Comparisons
 
 To compare heuristics using simulations:
-'''
+```
 python heuristic_comparison.py
-'''
+```
 This will run multiple games between different heuristic pairs and generate a performance plot.
 
 ### Heuristics Implemented
