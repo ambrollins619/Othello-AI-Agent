@@ -81,10 +81,10 @@ To test the performances of our heuristics, we decided to make our *MinMaxAgents
 | Heuristics     | Disk Parity | Stability | Corner | Mobility | Hybrid |
 |----------      |---------------|----------|----------|---------|------|
 | Disk parity    | -   |  - | -  |-  | -   |
-| Stability      | (*20/0/0) **100%*  | -   | -  | -    | -   |
-| Corner         | (*12/8/0) **60%*  | (4/15/1) **20%*      | -       | -      | -   |
-| Mobility       | (8/*10/2) **40%*  |(4/16/0) **20%* | (6/*14/0) **30%* | -   | -|
-| Hybrid         | (*20/0/0) **100%*  | (*20/0/0) **100%* | (*18/2/0) **90%* | (*20/0/0) **100%*  | -   |
+| Stability      | (20/0/0) 100%  | -   | -  | -    | -   |
+| Corner         | (12/8/0) 60%  | (4/15/1) 20%      | -       | -      | -   |
+| Mobility       | (8/10/2) 40%  |(4/16/0) 20% | (6/14/0) 30% | -   | -|
+| Hybrid         | (20/0/0) 100%  | (20/0/0) 100% | (18/2/0) 90% | (20/0/0) 100%  | -   |
 
 The results revealed interesting insights into each heuristic's performance. The Stability heuristic stood out as particularly promising, achieving a perfect win rate against all other heuristics except for the Corner heuristic, against which it still performed well but not flawlessly. This implies that the Corner heuristic's strategy of quickly securing corner positions can effectively disrupt Stability’s aim to establish stable disks. Disk Parity, as expected, performed poorly, demonstrating that having the most disks before the game's end is not necessarily an advantage. Instead, it provides more mobility to the opponent, allowing them to capture more pieces.
 
