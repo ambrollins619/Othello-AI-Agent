@@ -12,9 +12,9 @@ from heuristics import coin_parity_heuristic, mobility_heuristic, corner_heurist
 heuristics = {
     "Disk Parity": coin_parity_heuristic,
     "Mobility": mobility_heuristic,
-    "Corner": corner_heuristic,
-    "Stability": stability_heuristic,
-    "Hybrid": hybrid_heuristic
+    # "Corner": corner_heuristic,
+    # "Stability": stability_heuristic,
+    # "Hybrid": hybrid_heuristic
 }
 
 # Store results

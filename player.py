@@ -9,6 +9,6 @@ class Player:
     def get_move(self, game):
         if self.player_type == 'human':
             return None  # Human player will select via UI
-        elif self.player_type == 'ai':
+        elif self.player_type == 'random':
             valid_moves = list(game.valid_moves(self.color))
             return random.choice(valid_moves) if valid_moves else None

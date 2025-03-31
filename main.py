@@ -5,14 +5,20 @@ import copy
 from player import Player
 from minmax import MinMaxPlayer
 from heuristics import coin_parity_heuristic, mobility_heuristic, corner_heuristic, stability_heuristic, hybrid_heuristic
+from mcts import MCTSAgent
 
 class Othello:
-    def __init__(self, player1, player2):
+    def __init__(self, player1, player2, isopeningRandom = False):
         pygame.init()
         pygame.font.init()
         self.board = np.zeros((8, 8), dtype=int)  # 0 = empty, 1 = black, -1 = white
-        self.board[3, 3], self.board[4, 4] = -1, -1  # Initial white pieces
-        self.board[3, 4], self.board[4, 3] = 1, 1    # Initial black pieces
+        if not isopeningRandom:
+            self.board[3, 3], self.board[4, 4] = -1, -1  # Initial white pieces
+            self.board[3, 4], self.board[4, 3] = 1, 1    # Initial black pieces
+        
+        else :
+            self.board = self.create_random_opening().board
+            
         self.players = {1: player1, -1: player2}
         self.current_player = 1  # Black starts
         self.cell_size = 60
@@ -23,6 +29,19 @@ class Othello:
         self.running = True
         self.font = pygame.font.Font(pygame.font.get_default_font(), 36)
         
+    def create_random_opening(self, moves=4):
+        """Create a random opening position by playing random moves"""
+        game = Othello(Player('random', 1), Player('random', -1))
+        for _ in range(moves):
+            valid_moves = game.valid_moves(game.current_player)
+            if valid_moves:
+                move = random.choice(list(valid_moves))
+                game.apply_move(move, game.current_player)
+                game.current_player *= -1
+            else:
+                break
+        return game
+    
     def copy(self):
         """Returns a new Othello object with the same game state, excluding pygame-related elements."""
         new_game = Othello(self.players[1],self.players[-1])
@@ -137,7 +156,15 @@ class Othello:
                 self.show_winner()
                 pygame.time.delay(3000)
                 self.running = False
+
+                
         pygame.quit()
+        black_count = np.sum(self.board == 1)
+        white_count = np.sum(self.board == -1)
+
+        if(black_count == white_count): return 0
+        elif ( black_count > white_count): return 1
+        else : return -1
     
     def show_winner(self):
         winner_text = self.get_winner()
@@ -148,7 +175,9 @@ class Othello:
 
 
 if __name__ == "__main__":
-    player1 = MinMaxPlayer(1, heuristic_function=stability_heuristic, depth=3)
-    player2 = MinMaxPlayer(-1, heuristic_function=hybrid_heuristic, depth=3)
+    # player1 = Player('human', 1)
+    player1 = MinMaxPlayer(1, heuristic_function=coin_parity_heuristic, depth=3)
+    player2 = MCTSAgent(-1)
+    # player2 = MinMaxPlayer(-1, heuristic_function=hybrid_heuristic, depth=3)
     game = Othello(player1, player2)
     game.play()

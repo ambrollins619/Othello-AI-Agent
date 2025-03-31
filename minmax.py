@@ -3,9 +3,14 @@ import pygame
 import random
 from player import Player
 
+import time
+import math
+
+
 class MinMaxPlayer(Player):
     def __init__(self, color, heuristic_function, depth=3):
-        super().__init__('minmax', color)
+        self.color = color
+        self.player_type = 'minmax'
         self.depth = depth
         self.heuristic_function = heuristic_function  # Heuristic function parameter
 
@@ -55,3 +60,4 @@ class MinMaxPlayer(Player):
                     break
 
             return min_eval, best_move
+    
