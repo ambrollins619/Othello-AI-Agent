@@ -10,7 +10,7 @@ from player import Player
 import random
 
 class HeuristicAnalysis:
-    def __init__(self, heuristics, depth=3, games_per_match=5):
+    def __init__(self, heuristics, depth=5, games_per_match=20):
         self.heuristics = heuristics
         self.depth = depth
         self.games_per_match = games_per_match
@@ -63,5 +63,5 @@ heuristics = {
     "Hybrid": hybrid_heuristic
 }
 
-analysis = HeuristicAnalysis(heuristics, depth=3, games_per_match=5)
+analysis = HeuristicAnalysis(heuristics, depth=5, games_per_match=20)
 analysis.run_analysis()
