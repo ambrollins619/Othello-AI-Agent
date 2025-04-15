@@ -175,7 +175,7 @@ class Othello:
 
 
 if __name__ == "__main__":
-    player1 = MinMaxPlayer(1, heuristic_function=stability_heuristic, depth=3)
+    player1 = Player("human",1)
     player2 = MinMaxPlayer(-1, heuristic_function=hybrid_heuristic, depth=3)
     game = Othello(player1, player2)
     game.play()
